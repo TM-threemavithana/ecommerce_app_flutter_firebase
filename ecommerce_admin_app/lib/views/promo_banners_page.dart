@@ -40,7 +40,7 @@ class _PromoBannersPageState extends State<PromoBannersPage> {
       body:  _isInitialized? StreamBuilder(stream: DbService().readPromos(_isPromo), 
       builder: (context,snapshot){
         if(snapshot.hasData){
-            List<PromoBannersModel> promos = PromoBannersModel.fromJsonList(snapshot.data!.docs) as List<PromoBannersModel>;
+            List<PromoBannersModel> promos = PromoBannersModel.fromJsonList(snapshot.data!.docs);
             if(promos.isEmpty){
               return Center(child: Text("No ${_isPromo?"Promos":"Banners"} found"),);
             }
@@ -49,8 +49,8 @@ class _PromoBannersPageState extends State<PromoBannersPage> {
                 onTap: () {
                    showDialog(context: context, builder: (context)=>
         AlertDialog(
-          title: Text("What you want to do"),
-          content: Text("Delete action cannot be undone"),
+          title: const Text("What you want to do"),
+          content: const Text("Delete action cannot be undone"),
           actions: [
             TextButton(onPressed: (){
               Navigator.pop(context);
@@ -74,14 +74,14 @@ class _PromoBannersPageState extends State<PromoBannersPage> {
       );
                   
                 },
-                leading:  Container(
+                leading:  SizedBox(
                     height: 50,
                     width: 50,
                     child: Image.network(promos[index].image),
                   ),
                 title: Text(promos[index].title,maxLines: 2,overflow:  TextOverflow.ellipsis,),
                   subtitle: Text(promos[index].category),
-                  trailing:  IconButton(icon: Icon(Icons.edit_outlined), onPressed: (){
+                  trailing:  IconButton(icon: const Icon(Icons.edit_outlined), onPressed: (){
                     Navigator.pushNamed(context,"/update_promo", arguments: {
                       "promo":_isPromo,
                       "detail":promos[index]
@@ -92,15 +92,15 @@ class _PromoBannersPageState extends State<PromoBannersPage> {
        
         }
 
-        return Center(child: CircularProgressIndicator(),);
+        return const Center(child: CircularProgressIndicator(),);
       }):
-      SizedBox(),
+      const SizedBox(),
       floatingActionButton:  FloatingActionButton(onPressed: (){
         Navigator.pushNamed(context,"/update_promo",arguments: {
           "promo" : _isPromo
         });
       },
-       child:  Icon(Icons.add),),
+       child:  const Icon(Icons.add),),
     );
   }
 }

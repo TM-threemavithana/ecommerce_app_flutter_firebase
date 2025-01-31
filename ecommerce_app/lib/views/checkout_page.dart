@@ -18,7 +18,7 @@ class CheckoutPage extends StatefulWidget {
 }
 
 class _CheckoutPageState extends State<CheckoutPage> {
-  TextEditingController _couponController = TextEditingController();
+  final TextEditingController _couponController = TextEditingController();
 
   int discount = 0;
   int toPay = 0;
@@ -70,7 +70,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Checkout",
           style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
         ),
@@ -86,12 +86,12 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       "Delivery Details",
                       style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                     ),
                     Container(
-                       padding: EdgeInsets.all(16),
+                       padding: const EdgeInsets.all(16),
                               decoration: BoxDecoration(
                                 color: Colors.grey.shade200,
                                 borderRadius: BorderRadius.circular(10),
@@ -102,7 +102,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                            child: Column(
                                crossAxisAlignment: CrossAxisAlignment.start,
                              children: [
-                               Text(userData.name,style: TextStyle(
+                               Text(userData.name,style: const TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w500),),
                            Text(userData.email),       
@@ -111,16 +111,16 @@ class _CheckoutPageState extends State<CheckoutPage> {
                              ],
                            ),
                          ),
-                         Spacer(),
+                         const Spacer(),
                          IconButton(onPressed: (){
                           Navigator.pushNamed(context,"/update_profile");
-                         }, icon: Icon(Icons.edit_outlined))   
+                         }, icon: const Icon(Icons.edit_outlined))   
                               ],),
                     ),
-                       SizedBox(
+                       const SizedBox(
                           height: 20,
                         ),
-                        Text("Have a coupon?"),
+                        const Text("Have a coupon?"),
                          Row(
                           children: [
                             SizedBox(
@@ -163,41 +163,41 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                   }
                                   setState(() {});
                                 },
-                                child: Text("Apply"))
+                                child: const Text("Apply"))
                           ],
                         ),
-                          SizedBox(
+                          const SizedBox(
                           height: 8,
                         ),
                         discountText == "" ? Container() : Text(discountText),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
-                        Divider(),
-                        SizedBox(
+                        const Divider(),
+                        const SizedBox(
                           height: 10,
                         ),
                           Text(
                           "Total Quantity of Products: ${cartData.totalQuantity}",
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 16,
                           ),
                         ),
                         Text(
                           "Sub Total: ₹ ${cartData.totalCost}",
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 16,
                           ),
                         ),
-                        Divider(),
+                        const Divider(),
                         Text(
                           "Extra Discount: - ₹ $discount",
-                          style: TextStyle(fontSize: 16),
+                          style: const TextStyle(fontSize: 16),
                         ),
-                        Divider(),
+                        const Divider(),
                         Text(
                           "Total Payable: ₹ ${cartData.totalCost - discount}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 18, fontWeight: FontWeight.w500),
                         ),
                      
@@ -212,13 +212,13 @@ class _CheckoutPageState extends State<CheckoutPage> {
       bottomNavigationBar: Container(
          height: 60,
         padding: const EdgeInsets.all(8.0),
-        child: ElevatedButton(child: Text("Procced to pay"), onPressed: ()async{
+        child: ElevatedButton(onPressed: ()async{
           final user = Provider.of<UserProvider>(context, listen: false);
             if (user.address == "" ||
                 user.phone == "" ||
                 user.name == "" ||
                 user.email == "") {
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                   content: Text("Please fill your delivery details.")));
               return;
             }
@@ -285,7 +285,7 @@ try{
 //  close the checkout page
 Navigator.pop(context);
 
-     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                 content: Text(
                   "Payment Done",
                   style: TextStyle(color: Colors.white),
@@ -296,7 +296,7 @@ Navigator.pop(context);
 }catch(e){
      print("payment sheet error : $e");
               print("payment sheet failed");
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                 content: Text(
                   "Payment Failed",
                   style: TextStyle(color: Colors.white),
@@ -310,7 +310,7 @@ if(paymentSuccess){
 }
 
 
-        },style: ElevatedButton.styleFrom(backgroundColor: Colors.blue,foregroundColor: Colors.white),),
+        },style: ElevatedButton.styleFrom(backgroundColor: Colors.blue,foregroundColor: Colors.white),child: Text("Procced to pay"),),
       ),
     );
   }

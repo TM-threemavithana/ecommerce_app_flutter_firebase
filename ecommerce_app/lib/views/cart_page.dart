@@ -15,7 +15,7 @@ class _CartPageState extends State<CartPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Your Cart",
           style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
         ),
@@ -25,10 +25,10 @@ class _CartPageState extends State<CartPage> {
       body: Consumer<CartProvider>(
         builder: (context, value, child) {
           if (value.isLoading) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else {
             if (value.carts.isEmpty) {
-              return Center(child: Text("No items in cart"));
+              return const Center(child: Text("No items in cart"));
             } else {
               if (value.products.isNotEmpty) {
                 return ListView.builder(
@@ -45,7 +45,7 @@ class _CartPageState extends State<CartPage> {
                           productId: value.products[index].id);
                     });
               } else {
-                return Text("No items in cart");
+                return const Text("No items in cart");
               }
             }
           }
@@ -53,27 +53,27 @@ class _CartPageState extends State<CartPage> {
       ),
       bottomNavigationBar: Consumer<CartProvider>(
         builder: (context, value, child) {
-          if (value.carts.length == 0) {
-            return SizedBox();
+          if (value.carts.isEmpty) {
+            return const SizedBox();
           } else {
             return Container(
                width: double.infinity,
           height: 60,
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
               child: Row(
                 mainAxisAlignment:  MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     "Total : ₹${value.totalCost} ",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   ElevatedButton(onPressed: (){
                     Navigator.pushNamed(context,"/checkout");
-                  }, child: Text("Procced to Checkout"),
+                  },
                     style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,
                   foregroundColor: Colors.white,
-                ),
+                ), child: Text("Procced to Checkout"),
                   )
                 ],
               ),

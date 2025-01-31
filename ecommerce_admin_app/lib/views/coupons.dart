@@ -15,18 +15,17 @@ class _CouponsPageState extends State<CouponsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Coupons"),
+        title: const Text("Coupons"),
       ),
       body: StreamBuilder(
         stream: DbService().readCouponCode(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             List<CouponModel> coupons =
-                CouponModel.fromJsonList(snapshot.data!.docs)
-                    as List<CouponModel>;
+                CouponModel.fromJsonList(snapshot.data!.docs);
 
             if (coupons.isEmpty) {
-              return Center(
+              return const Center(
                 child: Text("No coupons found"),
               );
             } else {
@@ -38,7 +37,7 @@ class _CouponsPageState extends State<CouponsPage> {
                       showDialog(
                           context: context,
                           builder: (context) => AlertDialog(
-                                title: Text("What you want to do"),
+                                title: const Text("What you want to do"),
                                 actions: [
                                   TextButton(
                                       onPressed: () {
@@ -62,7 +61,7 @@ class _CouponsPageState extends State<CouponsPage> {
                                                   },
                                                 ));
                                       },
-                                      child: Text("Delete Coupon")),
+                                      child: const Text("Delete Coupon")),
                                   TextButton(
                                       onPressed: () {
                                         Navigator.pop(context);
@@ -75,14 +74,14 @@ class _CouponsPageState extends State<CouponsPage> {
                                                 discount:
                                                     coupons[index].discount));
                                       },
-                                      child: Text("Update Coupon")),
+                                      child: const Text("Update Coupon")),
                                 ],
                               ));
                     },
                     title: Text(coupons[index].code),
                     subtitle: Text(coupons[index].desc),
                     trailing: IconButton(
-                      icon: Icon(Icons.edit_outlined),
+                      icon: const Icon(Icons.edit_outlined),
                       onPressed: () {
                         showDialog(
                             context: context,
@@ -98,7 +97,7 @@ class _CouponsPageState extends State<CouponsPage> {
               );
             }
           } else {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }
@@ -109,9 +108,9 @@ class _CouponsPageState extends State<CouponsPage> {
           showDialog(
               context: context,
               builder: (context) =>
-                  ModifyCoupon(id: "", code: "", desc: "", discount: 0));
+                  const ModifyCoupon(id: "", code: "", desc: "", discount: 0));
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }
@@ -156,8 +155,8 @@ class _ModifyCouponState extends State<ModifyCoupon> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text("All will be converted to Uppercase"),
-              SizedBox(
+              const Text("All will be converted to Uppercase"),
+              const SizedBox(
                 height: 10,
               ),
               TextFormField(
@@ -165,11 +164,11 @@ class _ModifyCouponState extends State<ModifyCoupon> {
                 validator: (v) => v!.isEmpty ? "This cant be empty." : null,
                 decoration: InputDecoration(
                     hintText: "Coupon Code",
-                    label: Text("Coupon Code"),
+                    label: const Text("Coupon Code"),
                     fillColor: Colors.deepPurple.shade50,
                     filled: true),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               TextFormField(
@@ -177,11 +176,11 @@ class _ModifyCouponState extends State<ModifyCoupon> {
                 validator: (v) => v!.isEmpty ? "This cant be empty." : null,
                 decoration: InputDecoration(
                     hintText: "Description",
-                    label: Text("Description"),
+                    label: const Text("Description"),
                     fillColor: Colors.deepPurple.shade50,
                     filled: true),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               TextFormField(
@@ -189,7 +188,7 @@ class _ModifyCouponState extends State<ModifyCoupon> {
                 validator: (v) => v!.isEmpty ? "This cant be empty." : null,
                 decoration: InputDecoration(
                     hintText: "Discount % ",
-                    label: Text("Discount % "),
+                    label: const Text("Discount % "),
                     fillColor: Colors.deepPurple.shade50,
                     filled: true),
                 keyboardType: TextInputType.number,
@@ -203,7 +202,7 @@ class _ModifyCouponState extends State<ModifyCoupon> {
             onPressed: () {
               Navigator.pop(context);
             },
-            child: Text("Cancel")),
+            child: const Text("Cancel")),
         TextButton(
             onPressed: () {
               if (formKey.currentState!.validate()) {
@@ -216,11 +215,11 @@ class _ModifyCouponState extends State<ModifyCoupon> {
                 if (widget.id.isNotEmpty) {
                   DbService().updateCouponCode(docId: widget.id, data: data);
                   ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text("Coupon Code updated.")));
+                      const SnackBar(content: Text("Coupon Code updated.")));
                 } else {
                   DbService().createCouponCode(data: data);
                   ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text("Coupon Code added.")));
+                      const SnackBar(content: Text("Coupon Code added.")));
                 }
                 Navigator.pop(context);
               }

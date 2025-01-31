@@ -20,7 +20,7 @@ class _ViewProductState extends State<ViewProduct> {
         ModalRoute.of(context)!.settings.arguments as ProductsModel;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Product Details"),
+        title: const Text("Product Details"),
   scrolledUnderElevation: 0,
   forceMaterialTransparency: true,
 
@@ -39,16 +39,16 @@ class _ViewProductState extends State<ViewProduct> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Text(
                     arguments.name,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(
@@ -62,30 +62,30 @@ class _ViewProductState extends State<ViewProduct> {
                             color: Colors.grey.shade700,
                             decoration: TextDecoration.lineThrough),
                       ),
-                      SizedBox(width: 10,),
+                      const SizedBox(width: 10,),
                       Text(
                         "₹ ${arguments.new_price}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w800,
                             ),
                       ),
-                      SizedBox(width: 10,),
-                      Icon(Icons.arrow_downward, color: Colors.green,
+                      const SizedBox(width: 10,),
+                      const Icon(Icons.arrow_downward, color: Colors.green,
                           size: 20,),
                       Text("${discountPercent(arguments.old_price, arguments.new_price)} %",
-                       style: TextStyle(
+                       style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                               color: Colors.green),)
                     ],
                   ),
         
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   arguments.maxQuantity == 0
-                        ? Text(
+                        ? const Text(
                             "Out of Stock",
                             style: TextStyle(
                                 fontSize: 16,
@@ -94,12 +94,12 @@ class _ViewProductState extends State<ViewProduct> {
                           )
                         : Text(
                             "Only ${arguments.maxQuantity} left in stock",
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.green),
                           ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Text(arguments.description,
@@ -122,13 +122,13 @@ SizedBox(
   child: ElevatedButton(
                     onPressed: () {
                       Provider.of<CartProvider>(context,listen: false).addToCart(CartModel(productId: arguments.id, quantity: 1));
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Added to cart")));
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Added to cart")));
                     },
-                    child: Text("Add to Cart"),
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue.shade600,
                         foregroundColor: Colors.white,
-                        shape: RoundedRectangleBorder()),
+                        shape: const RoundedRectangleBorder()),
+                    child: Text("Add to Cart"),
                   ),
 ),
 SizedBox(
@@ -138,14 +138,14 @@ SizedBox(
                        Provider.of<CartProvider>(context,listen: false).addToCart(CartModel(productId: arguments.id, quantity: 1));
                        Navigator.pushNamed(context,"/checkout");
                     },
-                    child: Text("Buy Now"),
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
                         foregroundColor:  Colors.blue.shade600,
-                        shape: RoundedRectangleBorder()),
+                        shape: const RoundedRectangleBorder()),
+                    child: Text("Buy Now"),
                   ),
 ),
-      ],): SizedBox(),
+      ],): const SizedBox(),
     );
   }
 }

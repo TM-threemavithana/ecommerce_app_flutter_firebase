@@ -12,10 +12,10 @@ class UpdateProfile extends StatefulWidget {
 
 class _UpdateProfileState extends State<UpdateProfile> {
   final formKey = GlobalKey<FormState>();
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _addressController = TextEditingController();
-  TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
 
   @override
   void initState() {
@@ -32,7 +32,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Update Profile"),
+        title: const Text("Update Profile"),
           scrolledUnderElevation: 0,
   forceMaterialTransparency: true,
       ),
@@ -45,52 +45,52 @@ class _UpdateProfileState extends State<UpdateProfile> {
               children: [
                 TextFormField(
                   controller: _nameController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       labelText: "Name",
                       hintText: "Name",
                       border: OutlineInputBorder()),
                   validator: (value) =>
                       value!.isEmpty ? "Name cannot be empty." : null,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
                   controller: _emailController,
                   readOnly: true,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       labelText: "Email",
                       hintText: "Email",
                       border: OutlineInputBorder()),
                   validator: (value) =>
                       value!.isEmpty ? "Email cannot be empty." : null,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
                   maxLines: 3,
                   controller: _addressController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       labelText: "Address",
                       hintText: "Address",
                       border: OutlineInputBorder()),
                   validator: (value) =>
                       value!.isEmpty ? "Address cannot be empty." : null,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
                   controller: _phoneController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       labelText: "Phone",
                       hintText: "Phone",
                       border: OutlineInputBorder()),
                   validator: (value) =>
                       value!.isEmpty ? "Phone cannot be empty." : null,
                 ),
-                SizedBox(height: 10,),
+                const SizedBox(height: 10,),
                  SizedBox(
                     height: 60,
                     width: MediaQuery.of(context).size.width * .9,
@@ -107,7 +107,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                             };
 await DbService().updateUserData(extraData: data);
 Navigator.pop(context);
-ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Profile Updated")));
+ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Profile Updated")));
 
                           }
                           
@@ -116,7 +116,7 @@ ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Profile Updat
                           backgroundColor: Theme.of(context).primaryColor,
                           foregroundColor: Colors.white
                         ),
-                        child: Text(
+                        child: const Text(
                           "Update Profile",
                           style: TextStyle(fontSize: 16),
                         ))),

@@ -27,17 +27,16 @@ class _HomePageMakerContainerState extends State<HomePageMakerContainer> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             List<CategoriesModel> categories =
-                CategoriesModel.fromJsonList(snapshot.data!.docs)
-                    as List<CategoriesModel>;
+                CategoriesModel.fromJsonList(snapshot.data!.docs);
             if (categories.isEmpty) {
-              return SizedBox();
+              return const SizedBox();
             } else {
               return    StreamBuilder(stream: DbService().readBanners(), builder:
               (context, bannerSnapshot) {
                 if(bannerSnapshot.hasData){
-                  List<PromoBannersModel> banners= PromoBannersModel.fromJsonList(snapshot.data!.docs) as List<PromoBannersModel>;
+                  List<PromoBannersModel> banners= PromoBannersModel.fromJsonList(snapshot.data!.docs);
                   if(banners.isEmpty){
-                    return SizedBox();
+                    return const SizedBox();
                   }
                   else{
                     return Column(children: 
@@ -53,13 +52,13 @@ class _HomePageMakerContainerState extends State<HomePageMakerContainer> {
                   }
                 }
                 else{
-                  return SizedBox();
+                  return const SizedBox();
                 }
               },
               );
             }
           } else {
-             return Shimmer(child: Container(height: 400,width: double.infinity,), gradient: LinearGradient(colors: [Colors.grey.shade200,Colors.white]));
+             return Shimmer(gradient: LinearGradient(colors: [Colors.grey.shade200,Colors.white]), child: Container(height: 400,width: double.infinity,));
           }
         });
   }

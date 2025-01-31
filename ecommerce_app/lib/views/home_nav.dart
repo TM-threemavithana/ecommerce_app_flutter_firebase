@@ -25,10 +25,10 @@ class _HomeNavState extends State<HomeNav> {
   int selectedIndex = 0;
 
   List pages = [
-    HomePage(),
-    OrdersPage(),
-    CartPage(),
-    ProfilePage()
+    const HomePage(),
+    const OrdersPage(),
+    const CartPage(),
+    const ProfilePage()
   ];
   @override
   Widget build(BuildContext context) {
@@ -46,29 +46,29 @@ class _HomeNavState extends State<HomeNav> {
         showSelectedLabels: true,
         showUnselectedLabels: true,
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined),
               label: 'Home',
             ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
               icon: Icon(Icons.local_shipping_outlined),
               label: 'Orders',
             ),
           BottomNavigationBarItem(
               icon: Consumer<CartProvider>(
                 builder: (context, value, child) {
-                  if(value.carts.length>0){
+                  if(value.carts.isNotEmpty){
                     return Badge(label: Text(value.carts.length.toString()),
-                    child: Icon(Icons.shopping_cart_outlined),
                     backgroundColor:  Colors.green.shade400,
+                    child: Icon(Icons.shopping_cart_outlined),
                     );
                   }
-                  return Icon(Icons.shopping_cart_outlined);
+                  return const Icon(Icons.shopping_cart_outlined);
                 },
               ),
               label: 'Cart',
             ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
               icon: Icon(Icons.account_circle_outlined),
               label: 'Profile',
             ),

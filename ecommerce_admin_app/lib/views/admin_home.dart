@@ -16,21 +16,21 @@ class _AdminHomeState extends State<AdminHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Admin Dashboard"),
+      appBar: AppBar(title: const Text("Admin Dashboard"),
       actions: [
         IconButton(onPressed: ()async{
           Provider.of<AdminProvider>(context,listen: false).cancelProvider();
          await AuthService().logout();
           Navigator.pushNamedAndRemoveUntil(context, "/login",  (route)=> false);
-        }, icon: Icon(Icons.logout))
+        }, icon: const Icon(Icons.logout))
       ],
       ),
       body:  SingleChildScrollView(
         child: Column(children: [
           Container(
             height: 260,
-          padding:  EdgeInsets.all(12),
-          margin:  EdgeInsets.only(left: 10,right:  10,bottom: 10),
+          padding:  const EdgeInsets.all(12),
+          margin:  const EdgeInsets.only(left: 10,right:  10,bottom: 10),
           decoration:  BoxDecoration(color:  Colors.deepPurple.shade100,borderRadius:  BorderRadius.circular(10)),
             child: Consumer<AdminProvider>(
               builder: (context, value, child) => 

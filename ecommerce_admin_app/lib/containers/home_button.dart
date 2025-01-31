@@ -17,14 +17,14 @@ class _HomeButtonState extends State<HomeButton> {
       child: Container(
         height: 65,
         width: MediaQuery.of(context).size.width * .42,
-        margin: EdgeInsets.all(10),
+        margin: const EdgeInsets.all(10),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             color: Theme.of(context).primaryColor),
         child: Center(
             child: Text(
           widget.name,
-          style: TextStyle(color: Colors.white, fontSize: 20),
+          style: const TextStyle(color: Colors.white, fontSize: 20),
         )),
       ),
     );

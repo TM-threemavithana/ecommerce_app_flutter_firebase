@@ -10,8 +10,8 @@ class SingupPage extends StatefulWidget {
 
 class _SingupPageState extends State<SingupPage> {
     final formKey = GlobalKey<FormState>();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +19,7 @@ class _SingupPageState extends State<SingupPage> {
         child: Form(
           key: formKey,
           child: Column(children: [
-             SizedBox(
+             const SizedBox(
                   height: 120,
                 ),
                   SizedBox(
@@ -27,13 +27,13 @@ class _SingupPageState extends State<SingupPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         "Sign Up",
                         style:
                             TextStyle(fontSize: 40, fontWeight: FontWeight.w700),
                       ),
-                  Text("Create a new account and get started"),
-                  SizedBox(
+                  const Text("Create a new account and get started"),
+                  const SizedBox(
                   height: 10,
                 ),
                 SizedBox(
@@ -42,7 +42,7 @@ class _SingupPageState extends State<SingupPage> {
                       validator: (value) =>
                           value!.isEmpty ? "Email cannot be empty." : null,
                       controller: _emailController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         label: Text("Email"),
                       ),
@@ -50,7 +50,7 @@ class _SingupPageState extends State<SingupPage> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 SizedBox(
@@ -61,12 +61,12 @@ class _SingupPageState extends State<SingupPage> {
                           : null,
                       controller: _passwordController,
                       obscureText: true,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         label: Text("Password"),
                       ),
                     )),
-                     SizedBox(
+                     const SizedBox(
                   height: 10,
                 ),
                
@@ -84,13 +84,13 @@ class _SingupPageState extends State<SingupPage> {
                                 .then((value) {
                               if (value == "Account Created") {
                                 ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(content: Text("Account Created")));
+                                    const SnackBar(content: Text("Account Created")));
                                 Navigator.restorablePushNamedAndRemoveUntil(context, "/home" , (route) => false);
                               } else {
                                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                   content: Text(
                                     value,
-                                    style: TextStyle(color: Colors.white),
+                                    style: const TextStyle(color: Colors.white),
                                   ),
                                   backgroundColor: Colors.red.shade400,
                                 ));
@@ -98,12 +98,12 @@ class _SingupPageState extends State<SingupPage> {
                             });
                           }
                         },
-                        child: Text(
+                        child: const Text(
                           "Sign Up",
                           style: TextStyle(fontSize: 16),
                         ))),
           
-                        SizedBox(
+                        const SizedBox(
                   height: 10,
                 ),
           
@@ -111,12 +111,12 @@ class _SingupPageState extends State<SingupPage> {
                  Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Already have and account?"),
+                    const Text("Already have and account?"),
                     TextButton(
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        child: Text("Login"))
+                        child: const Text("Login"))
                   ],
                 )
                

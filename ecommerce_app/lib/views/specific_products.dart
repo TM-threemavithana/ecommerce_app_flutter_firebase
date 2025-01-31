@@ -27,15 +27,14 @@ class _SpecificProductsState extends State<SpecificProducts> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             List<ProductsModel> products =
-                ProductsModel.fromJsonList(snapshot.data!.docs)
-                    as List<ProductsModel>;
+                ProductsModel.fromJsonList(snapshot.data!.docs);
             if (products.isEmpty) {
-              return Center(
+              return const Center(
                 child: Text("No products found."),
               );
             } else {
               return GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2, // Number of items per row
                   crossAxisSpacing: 8.0, // Space between items horizontally
                   mainAxisSpacing: 8.0, // Space between items vertically
@@ -64,7 +63,7 @@ class _SpecificProductsState extends State<SpecificProducts> {
                                         fit: BoxFit.fitHeight)),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 8,
                             ),
                             Text(
@@ -72,18 +71,18 @@ class _SpecificProductsState extends State<SpecificProducts> {
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 2,
                             ),
                             Row(
                               children: [
-                                 SizedBox(width: 2,),
-                          Text("\₹${product.old_price}",style:  TextStyle(fontSize: 13,fontWeight: FontWeight.w500, decoration:  TextDecoration.lineThrough),),
-                          SizedBox(width: 4,),
-                          Text("\₹${product.new_price}",style:  TextStyle(fontSize: 15,fontWeight: FontWeight.w600),),
-                          SizedBox(width: 2,),
-                          Icon(Icons.arrow_downward,color: Colors.green, size: 14,),
-                                      Text("${discountPercent(product.old_price,product.new_price)}%",style:  TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: Colors.green),),
+                                 const SizedBox(width: 2,),
+                          Text("₹${product.old_price}",style:  const TextStyle(fontSize: 13,fontWeight: FontWeight.w500, decoration:  TextDecoration.lineThrough),),
+                          const SizedBox(width: 4,),
+                          Text("₹${product.new_price}",style:  const TextStyle(fontSize: 15,fontWeight: FontWeight.w600),),
+                          const SizedBox(width: 2,),
+                          const Icon(Icons.arrow_downward,color: Colors.green, size: 14,),
+                                      Text("${discountPercent(product.old_price,product.new_price)}%",style:  const TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: Colors.green),),
                               ],
                             )
                           ],
@@ -95,7 +94,7 @@ class _SpecificProductsState extends State<SpecificProducts> {
               );
             }
           } else {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }

@@ -56,19 +56,19 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         routes: {
-          "/": (context) => CheckUser(),
-          "/login": (context) => LoginPage(),
-          "/signup": (context) => SingupPage(),
-          "/home": (context) => AdminHome(),
-          "/category": (context) => CategoriesPage(),
-          "/products": (context) => ProductsPage(),
-          "/add_product": (context) => ModifyProduct(),
-          "/view_product": (context) => ViewProduct(),
-          "/promos": (context) => PromoBannersPage(),
-          "/update_promo": (context) => ModifyPromo(),
-          "/coupons": (context) => CouponsPage(),
-          "/orders": (context) => OrdersPage(),
-          "/view_order": (context) => ViewOrder()
+          "/": (context) => const CheckUser(),
+          "/login": (context) => const LoginPage(),
+          "/signup": (context) => const SingupPage(),
+          "/home": (context) => const AdminHome(),
+          "/category": (context) => const CategoriesPage(),
+          "/products": (context) => const ProductsPage(),
+          "/add_product": (context) => const ModifyProduct(),
+          "/view_product": (context) => const ViewProduct(),
+          "/promos": (context) => const PromoBannersPage(),
+          "/update_promo": (context) => const ModifyPromo(),
+          "/coupons": (context) => const CouponsPage(),
+          "/orders": (context) => const OrdersPage(),
+          "/view_order": (context) => const ViewOrder()
         },
       ),
     );
@@ -97,7 +97,7 @@ class _CheckUserState extends State<CheckUser> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
         child: CircularProgressIndicator(),
       ),

@@ -13,11 +13,11 @@ class _AdditionalConfirmState extends State<AdditionalConfirm> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text("Are you sure"),
+      title: const Text("Are you sure"),
       content: Text(widget.contentText),
       actions: [
-        TextButton(onPressed: widget.onNo, child: Text("No")),
-        TextButton(onPressed: widget.onYes, child: Text("Yes")),
+        TextButton(onPressed: widget.onNo, child: const Text("No")),
+        TextButton(onPressed: widget.onYes, child: const Text("Yes")),
       ],
     );
   }

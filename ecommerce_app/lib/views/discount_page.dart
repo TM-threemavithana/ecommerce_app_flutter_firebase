@@ -12,19 +12,19 @@ class DiscountPage extends StatefulWidget {
 class _DiscountPageState extends State<DiscountPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: Text("Discount Coupons",style: TextStyle(fontSize: 22,fontWeight: FontWeight.w600),),  scrolledUnderElevation: 0,
+    return Scaffold(appBar: AppBar(title: const Text("Discount Coupons",style: TextStyle(fontSize: 22,fontWeight: FontWeight.w600),),  scrolledUnderElevation: 0,
   forceMaterialTransparency: true,),
     body: StreamBuilder(stream: DbService().readDiscounts(), builder: (context,snapshot){
       if(snapshot.hasData){
-        List<CouponModel> discounts= CouponModel.fromJsonList(snapshot.data!.docs) as List<CouponModel>;
+        List<CouponModel> discounts= CouponModel.fromJsonList(snapshot.data!.docs);
 
         if(discounts.isEmpty){
-          return SizedBox();
+          return const SizedBox();
         }
         else{
           return ListView.builder(itemCount: discounts.length,itemBuilder: (context, index){
             return ListTile(
-              leading:  Icon(Icons.discount_outlined),
+              leading:  const Icon(Icons.discount_outlined),
               title: Text(discounts[index].code),
               subtitle:  Text(discounts[index].desc),
             );
@@ -34,7 +34,7 @@ class _DiscountPageState extends State<DiscountPage> {
 
       }
       else{
-        return SizedBox();
+        return const SizedBox();
       }
     })
 

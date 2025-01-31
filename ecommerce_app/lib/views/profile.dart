@@ -14,7 +14,7 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: Text("Profile",style: TextStyle(fontSize: 22,fontWeight: FontWeight.w600),),
+    return Scaffold(appBar: AppBar(title: const Text("Profile",style: TextStyle(fontSize: 22,fontWeight: FontWeight.w600),),
       scrolledUnderElevation: 0,
   forceMaterialTransparency: true,),
     body:  Column(children: [
@@ -27,25 +27,25 @@ class _ProfilePageState extends State<ProfilePage> {
           onTap: (){
             Navigator.pushNamed(context,"/update_profile");
           },
-          trailing: Icon(Icons.edit_outlined),
+          trailing: const Icon(Icons.edit_outlined),
           ),
         ),
       ),
-      SizedBox(height: 20,),
-      ListTile(title: Text("Orders"), leading: Icon(Icons.local_shipping_outlined), onTap: (){
+      const SizedBox(height: 20,),
+      ListTile(title: const Text("Orders"), leading: const Icon(Icons.local_shipping_outlined), onTap: (){
         Navigator.pushNamed(context, "/orders");
 
       },),
-      Divider( thickness: 1,  endIndent:  10, indent: 10,),
-      ListTile(title: Text("Discount & Offers"), leading: Icon(Icons.discount_outlined), onTap: (){
+      const Divider( thickness: 1,  endIndent:  10, indent: 10,),
+      ListTile(title: const Text("Discount & Offers"), leading: const Icon(Icons.discount_outlined), onTap: (){
        Navigator.pushNamed(context, "/discount");
       },),
-      Divider( thickness: 1,  endIndent:  10, indent: 10,),
-      ListTile(title: Text("Help & Support"), leading: Icon(Icons.support_agent), onTap: (){
-       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Mail us at ecommerce@shop.com")));
+      const Divider( thickness: 1,  endIndent:  10, indent: 10,),
+      ListTile(title: const Text("Help & Support"), leading: const Icon(Icons.support_agent), onTap: (){
+       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Mail us at ecommerce@shop.com")));
       },),
-      Divider( thickness: 1,  endIndent:  10, indent: 10,),
-      ListTile(title: Text("Logout"), leading: Icon(Icons.logout_outlined), onTap: ()async{
+      const Divider( thickness: 1,  endIndent:  10, indent: 10,),
+      ListTile(title: const Text("Logout"), leading: const Icon(Icons.logout_outlined), onTap: ()async{
         Provider.of<UserProvider>(context,listen: false).cancelProvider();
         Provider.of<CartProvider>(context,listen: false).cancelProvider();
        await AuthService().logout();

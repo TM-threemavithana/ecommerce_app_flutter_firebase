@@ -14,9 +14,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: Text("Best Deals",style: TextStyle(fontSize: 22,fontWeight: FontWeight.w600),),  scrolledUnderElevation: 0,
+    return Scaffold(appBar: AppBar(title: const Text("Best Deals",style: TextStyle(fontSize: 22,fontWeight: FontWeight.w600),),  scrolledUnderElevation: 0,
   forceMaterialTransparency: true,)
-    ,body:SingleChildScrollView(
+    ,body:const SingleChildScrollView(
       child: Column(children: [
         PromoContainer(),
         DiscountContainer(),

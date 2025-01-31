@@ -14,18 +14,18 @@ class _DiscountContainerState extends State<DiscountContainer> {
   Widget build(BuildContext context) {
     return StreamBuilder(stream: DbService().readDiscounts(), builder: (context,snapshot){
       if(snapshot.hasData){
-        List<CouponModel> discounts= CouponModel.fromJsonList(snapshot.data!.docs) as List<CouponModel>;
+        List<CouponModel> discounts= CouponModel.fromJsonList(snapshot.data!.docs);
 
         if(discounts.isEmpty){
-          return SizedBox();
+          return const SizedBox();
         }
         else{
           return GestureDetector(
             onTap: ()=> Navigator.pushNamed(context, "/discount"),
             child: Container(
               width:  double.infinity,
-               padding:  EdgeInsets.symmetric(horizontal: 16, vertical: 18),
-                  margin:  EdgeInsets.symmetric(horizontal: 6, vertical: 8),
+               padding:  const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
+                  margin:  const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
                   decoration:   BoxDecoration(
                   color: Colors.blue.shade100,
                     borderRadius:  BorderRadius.circular(20),
@@ -43,7 +43,7 @@ class _DiscountContainerState extends State<DiscountContainer> {
 
       }
       else{
-        return SizedBox();
+        return const SizedBox();
       }
     });
   }

@@ -41,12 +41,12 @@ class _OrdersPageState extends State<OrdersPage> {
       required Color bgColor,
       required Color textColor}) {
     return Container(
+      color: bgColor,
+      padding: const EdgeInsets.all(8),
       child: Text(
         text,
         style: TextStyle(color: textColor),
       ),
-      color: bgColor,
-      padding: EdgeInsets.all(8),
     );
   }
 
@@ -54,7 +54,7 @@ class _OrdersPageState extends State<OrdersPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Orders",
           style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
         ),
@@ -66,10 +66,9 @@ class _OrdersPageState extends State<OrdersPage> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             List<OrdersModel> orders =
-                OrdersModel.fromJsonList(snapshot.data!.docs)
-                    as List<OrdersModel>;
+                OrdersModel.fromJsonList(snapshot.data!.docs);
             if (orders.isEmpty) {
-              return Center(
+              return const Center(
                 child: Text("No orders found"),
               );
             } else {
@@ -91,7 +90,7 @@ class _OrdersPageState extends State<OrdersPage> {
               );
             }
           } else {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
         },
       ),
@@ -112,7 +111,7 @@ class _ViewOrderState extends State<ViewOrder> {
     final args = ModalRoute.of(context)!.settings.arguments as OrdersModel;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Order Summary"),
+        title: const Text("Order Summary"),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -120,8 +119,8 @@ class _ViewOrderState extends State<ViewOrder> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8),
                 child: Text(
                   "Delivery Details",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
@@ -129,7 +128,7 @@ class _ViewOrderState extends State<ViewOrder> {
               ),
               Container(
                 width: double.infinity,
-                padding: EdgeInsets.all(8),
+                padding: const EdgeInsets.all(8),
                 color: Colors.grey.shade100,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -148,8 +147,8 @@ class _ViewOrderState extends State<ViewOrder> {
                 children: args.products
                     .map((e) => Container(
                           width: double.infinity,
-                          padding: EdgeInsets.all(10),
-                          margin: EdgeInsets.all(4),
+                          padding: const EdgeInsets.all(10),
+                          margin: const EdgeInsets.all(4),
                           decoration: BoxDecoration(
                             color: Colors.grey.shade200,
                             borderRadius: BorderRadius.circular(10),
@@ -159,12 +158,12 @@ class _ViewOrderState extends State<ViewOrder> {
                             children: [
                               Row(
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     height: 50,
                                     width: 50,
                                     child: Image.network(e.image),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
                                   Expanded(child: Text(e.name)),
@@ -172,11 +171,11 @@ class _ViewOrderState extends State<ViewOrder> {
                               ),
                               Text(
                                 "₹${e.single_price.toString()} x ${e.quantity.toString()} quantity",
-                                style: TextStyle(fontWeight: FontWeight.bold),
+                                style: const TextStyle(fontWeight: FontWeight.bold),
                               ),
                               Text(
                                 "₹${e.total_price.toString()}",
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 20),
                               ),
                             ],
@@ -192,22 +191,22 @@ class _ViewOrderState extends State<ViewOrder> {
                     Text(
                       "Discount : ₹${args.discount}",
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                          const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
                     Text(
                       "Total : ₹${args.total}",
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                          const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
                     Text(
                       "Status : ${args.status}",
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                          const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
           args.status=="PAID" || args.status=="ON_THE_WAY" ? 
@@ -215,7 +214,6 @@ class _ViewOrderState extends State<ViewOrder> {
                 height: 60,
                 width: MediaQuery.of(context).size.width * .9,
                 child: ElevatedButton(
-                  child: Text("Modify Order"),
                   onPressed: () {
                     showDialog(
                         context: context,
@@ -226,9 +224,10 @@ class _ViewOrderState extends State<ViewOrder> {
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
                       foregroundColor: Colors.white),
+                  child: Text("Modify Order"),
                 ),
               ):
-              SizedBox(),
+              const SizedBox(),
             ],
           ),
         ),
@@ -249,12 +248,12 @@ class _ModifyOrderState extends State<ModifyOrder> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text("Modify this order"),
+      title: const Text("Modify this order"),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Chosse want you want to do"),
+          const Text("Chosse want you want to do"),
           TextButton(
               onPressed: () {
                 Navigator.pop(context);
@@ -268,7 +267,7 @@ class _ModifyOrderState extends State<ModifyOrder> {
                               docId: widget.order.id,
                               data: {"status": "CANCELLED"});
                           ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text("Order Updated")));
+                              const SnackBar(content: Text("Order Updated")));
                           Navigator.pop(context);
                           Navigator.pop(context);
                         },
@@ -276,7 +275,7 @@ class _ModifyOrderState extends State<ModifyOrder> {
                           Navigator.pop(context);
                         }));
               },
-              child: Text("Cancel Order"))
+              child: const Text("Cancel Order"))
         ],
       ),
     );

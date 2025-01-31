@@ -24,7 +24,7 @@ class _ModifyPromoState extends State<ModifyPromo> {
   TextEditingController categoryController = TextEditingController();
   TextEditingController imageController = TextEditingController();
   final ImagePicker picker = ImagePicker();
-  late XFile? image = null;
+  XFile? image;
 
   bool _isInitialized = false;
   bool _isPromo = true;
@@ -53,7 +53,7 @@ class _ModifyPromoState extends State<ModifyPromo> {
       setState(() {
         if (res != null) {
           imageController.text = res;
-          print("set image url ${res} : ${imageController.text}");
+          print("set image url $res : ${imageController.text}");
           ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text("Image uploaded successfully")));
         }
@@ -111,14 +111,14 @@ class _ModifyPromoState extends State<ModifyPromo> {
                   validator: (v) => v!.isEmpty ? "This cant be empty." : null,
                   decoration: InputDecoration(
                       hintText: "Title",
-                      label: Text("Title"),
+                      label: const Text("Title"),
                       fillColor: Colors.deepPurple.shade50,
                       filled: true),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
@@ -127,14 +127,14 @@ class _ModifyPromoState extends State<ModifyPromo> {
                   readOnly: true,
                   decoration: InputDecoration(
                       hintText: "Category",
-                      label: Text("Category"),
+                      label: const Text("Category"),
                       fillColor: Colors.deepPurple.shade50,
                       filled: true),
                   onTap: () {
                     showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
-                              title: Text("Select Category :"),
+                              title: const Text("Select Category :"),
                               content: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisSize: MainAxisSize.min,
@@ -162,16 +162,16 @@ class _ModifyPromoState extends State<ModifyPromo> {
                             ));
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 image == null
                     ? imageController.text.isNotEmpty
                         ? Container(
-                            margin: EdgeInsets.all(20),
+                            margin: const EdgeInsets.all(20),
                             height: 100,
                             width: double.infinity,
                             color: Colors.deepPurple.shade50,
@@ -179,9 +179,9 @@ class _ModifyPromoState extends State<ModifyPromo> {
                               imageController.text,
                               fit: BoxFit.contain,
                             ))
-                        : SizedBox()
+                        : const SizedBox()
                     : Container(
-                        margin: EdgeInsets.all(20),
+                        margin: const EdgeInsets.all(20),
                         height: 200,
                         width: double.infinity,
                         color: Colors.deepPurple.shade50,
@@ -196,8 +196,8 @@ class _ModifyPromoState extends State<ModifyPromo> {
                       // NEW for cloudinary Upload
                       _pickImageAndCloudinaryUpload();
                     },
-                    child: Text("Pick Image")),
-                SizedBox(
+                    child: const Text("Pick Image")),
+                const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
@@ -205,11 +205,11 @@ class _ModifyPromoState extends State<ModifyPromo> {
                   validator: (v) => v!.isEmpty ? "This cant be empty." : null,
                   decoration: InputDecoration(
                       hintText: "Image Link",
-                      label: Text("Image Link"),
+                      label: const Text("Image Link"),
                       fillColor: Colors.deepPurple.shade50,
                       filled: true),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 SizedBox(

@@ -24,21 +24,21 @@ class _ZoneContainerState extends State<ZoneContainer> {
       "Get upto $dis% off"
     ];
 
-    return Text(quotes[random],style: TextStyle(color: Colors.green),);
+    return Text(quotes[random],style: const TextStyle(color: Colors.green),);
   }
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(stream: DbService().readProducts(widget.category), builder: (context,snapshot){
       if(snapshot.hasData){
-        List<ProductsModel> products = ProductsModel.fromJsonList(snapshot.data!.docs) as List<ProductsModel>;
+        List<ProductsModel> products = ProductsModel.fromJsonList(snapshot.data!.docs);
         if(products.isEmpty){
-          return Center(child: Text("No Products Found"),);
+          return const Center(child: Text("No Products Found"),);
         }
         else{
           return Container(
-            margin:  EdgeInsets.all(4),
-        padding:  EdgeInsets.symmetric(horizontal: 10),
+            margin:  const EdgeInsets.all(4),
+        padding:  const EdgeInsets.symmetric(horizontal: 10),
       color: Colors.green.shade50,
       child:Column(
         crossAxisAlignment: CrossAxisAlignment.start
@@ -46,13 +46,13 @@ class _ZoneContainerState extends State<ZoneContainer> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 4),
           child: Row(children: [
-             Text("${widget.category.substring(0,1).toUpperCase()+widget.category.substring(1)}",style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),),
-             Spacer(),
+             Text(widget.category.substring(0,1).toUpperCase()+widget.category.substring(1),style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),),
+             const Spacer(),
                IconButton(onPressed: (){
                       Navigator.pushNamed(context, "/specific", arguments: {
             "name": widget.category,
                 });
-                }, icon: Icon(Icons.chevron_right))
+                }, icon: const Icon(Icons.chevron_right))
           
           ],),
         ),
@@ -67,7 +67,7 @@ class _ZoneContainerState extends State<ZoneContainer> {
               },
               child: Container(
                 width: MediaQuery.sizeOf(context).width*.43,
-                  padding:  EdgeInsets.all(8),
+                  padding:  const EdgeInsets.all(8),
                       
                       color: Colors.white,
                                       height: 180,
@@ -76,7 +76,7 @@ class _ZoneContainerState extends State<ZoneContainer> {
                   crossAxisAlignment: CrossAxisAlignment.start
                   ,children: [
                   Center(child: Image.network(products[i].image, height:  120,)),
-              Text(products[i].name,maxLines: 1, overflow: TextOverflow.ellipsis,style:  TextStyle(fontSize: 15, fontWeight: FontWeight.w500),),
+              Text(products[i].name,maxLines: 1, overflow: TextOverflow.ellipsis,style:  const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),),
               specialQuote(price: products[i].new_price, dis: int.parse(discountPercent(products[i].old_price, products[i].new_price)))
                 ],),
               ),
@@ -89,7 +89,7 @@ class _ZoneContainerState extends State<ZoneContainer> {
         }
       }
       else{
-        return  Shimmer(child: Container(height: 400, width:  double.infinity, color: Colors.white,), gradient:  LinearGradient(colors: [Colors.grey.shade200,Colors.white]),);
+        return  Shimmer(gradient:  LinearGradient(colors: [Colors.grey.shade200,Colors.white]),child: Container(height: 400, width:  double.infinity, color: Colors.white,),);
       }
     });
   }

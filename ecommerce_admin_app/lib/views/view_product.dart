@@ -16,7 +16,7 @@ class _ViewProductState extends State<ViewProduct> {
         ModalRoute.of(context)!.settings.arguments as ProductsModel;
     return Scaffold(
       appBar: AppBar(
-        title: Text("User's View"),
+        title: const Text("User's View"),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -32,16 +32,16 @@ class _ViewProductState extends State<ViewProduct> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Text(
                     arguments.name,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(
@@ -55,30 +55,30 @@ class _ViewProductState extends State<ViewProduct> {
                             color: Colors.grey.shade700,
                             decoration: TextDecoration.lineThrough),
                       ),
-                      SizedBox(width: 10,),
+                      const SizedBox(width: 10,),
                       Text(
                         "₹ ${arguments.new_price}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w800,
                             ),
                       ),
-                      SizedBox(width: 10,),
-                      Icon(Icons.arrow_downward, color: Colors.green,
+                      const SizedBox(width: 10,),
+                      const Icon(Icons.arrow_downward, color: Colors.green,
                           size: 20,),
                       Text("${discountPercent(arguments.old_price, arguments.new_price)} %",
-                       style: TextStyle(
+                       style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                               color: Colors.green),)
                     ],
                   ),
         
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   arguments.maxQuantity == 0
-                        ? Text(
+                        ? const Text(
                             "Out of Stock",
                             style: TextStyle(
                                 fontSize: 16,
@@ -87,12 +87,12 @@ class _ViewProductState extends State<ViewProduct> {
                           )
                         : Text(
                             "Only ${arguments.maxQuantity} left in stock",
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.green),
                           ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Text(arguments.description,
@@ -112,22 +112,22 @@ SizedBox(
   height: 60,width: MediaQuery.of(context).size.width*.5,
   child: ElevatedButton(
                     onPressed: () {},
-                    child: Text("Add to Cart"),
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Theme.of(context).primaryColor,
                         foregroundColor: Colors.white,
-                        shape: RoundedRectangleBorder()),
+                        shape: const RoundedRectangleBorder()),
+                    child: Text("Add to Cart"),
                   ),
 ),
 SizedBox(
   height: 60,width: MediaQuery.of(context).size.width*.5,
   child: ElevatedButton(
                     onPressed: () {},
-                    child: Text("Buy Now"),
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
                         foregroundColor:  Theme.of(context).primaryColor,
-                        shape: RoundedRectangleBorder()),
+                        shape: const RoundedRectangleBorder()),
+                    child: Text("Buy Now"),
                   ),
 ),
       ],),

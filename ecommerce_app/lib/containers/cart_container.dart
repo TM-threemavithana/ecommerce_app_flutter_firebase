@@ -26,7 +26,7 @@ class _CartContainerState extends State<CartContainer> {
 
   increaseCount(int max) async {
     if (count >= max) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text("Maximum Quantity reached"),
       ));
       return;
@@ -60,17 +60,17 @@ class _CartContainerState extends State<CartContainer> {
     return Card(
       child: Container(
         width: double.infinity,
-        padding: EdgeInsets.all(10),
-        margin: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
+        margin: const EdgeInsets.all(10),
         child: Column(
           children: [
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                    height: 80, width: 80, child: Image.network(widget.image)),
                 SizedBox(
+                    height: 80, width: 80, child: Image.network(widget.image)),
+                const SizedBox(
                   width: 10,
                 ),
                 Expanded(
@@ -82,43 +82,43 @@ class _CartContainerState extends State<CartContainer> {
                         widget.name,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w600),
                       )),
-                      SizedBox(
+                      const SizedBox(
                         height: 6,
                       ),
                       Row(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             width: 2,
                           ),
                           Text(
-                            "\₹${widget.old_price}",
-                            style: TextStyle(
+                            "₹${widget.old_price}",
+                            style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500,
                                 decoration: TextDecoration.lineThrough),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 8,
                           ),
                           Text(
-                            "\₹${widget.new_price}",
-                            style: TextStyle(
+                            "₹${widget.new_price}",
+                            style: const TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.w600),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 8,
                           ),
-                          Icon(
+                          const Icon(
                             Icons.arrow_downward,
                             color: Colors.green,
                             size: 20,
                           ),
                           Text(
                             "${discountPercent(widget.old_price, widget.new_price)}%",
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.green),
@@ -139,16 +139,16 @@ class _CartContainerState extends State<CartContainer> {
                     ))
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             Row(
               children: [
-                Text(
+                const Text(
                   "Quantity:",
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 8,
                 ),
                 Container(
@@ -162,16 +162,16 @@ class _CartContainerState extends State<CartContainer> {
                       onPressed: () async {
                         increaseCount(widget.maxQuantity);
                       },
-                      icon: Icon(Icons.add)),
+                      icon: const Icon(Icons.add)),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 8,
                 ),
                 Text(
                   "$count",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 8,
                 ),
                 Container(
@@ -186,19 +186,19 @@ class _CartContainerState extends State<CartContainer> {
                         decreaseCount();
                        
                       },
-                      icon: Icon(Icons.remove)),
+                      icon: const Icon(Icons.remove)),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 8,
                 ),
-                Spacer(),
-                Text("Total:"),
-                SizedBox(
+                const Spacer(),
+                const Text("Total:"),
+                const SizedBox(
                   width: 8,
                 ),
                 Text(
-                  "\₹${widget.new_price * count}",
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
+                  "₹${widget.new_price * count}",
+                  style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
                 ),
               ],
             ),

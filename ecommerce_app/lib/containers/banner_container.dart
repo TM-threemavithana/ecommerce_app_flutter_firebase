@@ -18,7 +18,7 @@ class _BannerContainerState extends State<BannerContainer> {
                 });
       },
       child: Container(
-        margin:  EdgeInsets.symmetric(vertical: 8),
+        margin:  const EdgeInsets.symmetric(vertical: 8),
         height: 200,
         child: Image.network(widget.image,fit: BoxFit.cover,),
       ),

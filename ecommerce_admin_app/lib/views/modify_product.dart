@@ -27,7 +27,7 @@ class _ModifyProductState extends State<ModifyProduct> {
   TextEditingController descController = TextEditingController();
   TextEditingController imageController = TextEditingController();
   final ImagePicker picker = ImagePicker();
-  late XFile? image = null;
+  XFile? image;
 
 // NEW : upload to cloudinary
   void _pickImageAndCloudinaryUpload() async {
@@ -37,7 +37,7 @@ class _ModifyProductState extends State<ModifyProduct> {
       setState(() {
         if (res != null) {
           imageController.text = res;
-          print("set image url ${res} : ${imageController.text}");
+          print("set image url $res : ${imageController.text}");
           ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text("Image uploaded successfully")));
         }
@@ -97,11 +97,11 @@ class _ModifyProductState extends State<ModifyProduct> {
                   validator: (v) => v!.isEmpty ? "This cant be empty." : null,
                   decoration: InputDecoration(
                       hintText: "Product Name",
-                      label: Text("Product Name"),
+                      label: const Text("Product Name"),
                       fillColor: Colors.deepPurple.shade50,
                       filled: true),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
@@ -109,13 +109,13 @@ class _ModifyProductState extends State<ModifyProduct> {
                   validator: (v) => v!.isEmpty ? "This cant be empty." : null,
                   decoration: InputDecoration(
                     hintText: "Original Price",
-                    label: Text("Original Price"),
+                    label: const Text("Original Price"),
                     fillColor: Colors.deepPurple.shade50,
                     filled: true,
                   ),
                   keyboardType: TextInputType.number,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
@@ -123,13 +123,13 @@ class _ModifyProductState extends State<ModifyProduct> {
                   validator: (v) => v!.isEmpty ? "This cant be empty." : null,
                   decoration: InputDecoration(
                     hintText: "Sell Price",
-                    label: Text("Sell Price"),
+                    label: const Text("Sell Price"),
                     fillColor: Colors.deepPurple.shade50,
                     filled: true,
                   ),
                   keyboardType: TextInputType.number,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
@@ -137,11 +137,11 @@ class _ModifyProductState extends State<ModifyProduct> {
                   validator: (v) => v!.isEmpty ? "This cant be empty." : null,
                   decoration: InputDecoration(
                       hintText: "Quantity Left",
-                      label: Text("Quantity Left"),
+                      label: const Text("Quantity Left"),
                       fillColor: Colors.deepPurple.shade50,
                       filled: true),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
@@ -150,14 +150,14 @@ class _ModifyProductState extends State<ModifyProduct> {
                   readOnly: true,
                   decoration: InputDecoration(
                       hintText: "Category",
-                      label: Text("Category"),
+                      label: const Text("Category"),
                       fillColor: Colors.deepPurple.shade50,
                       filled: true),
                   onTap: () {
                     showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
-                              title: Text("Select Category :"),
+                              title: const Text("Select Category :"),
                               content: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisSize: MainAxisSize.min,
@@ -185,7 +185,7 @@ class _ModifyProductState extends State<ModifyProduct> {
                             ));
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
@@ -193,18 +193,18 @@ class _ModifyProductState extends State<ModifyProduct> {
                   validator: (v) => v!.isEmpty ? "This cant be empty." : null,
                   decoration: InputDecoration(
                       hintText: "Description",
-                      label: Text("Description"),
+                      label: const Text("Description"),
                       fillColor: Colors.deepPurple.shade50,
                       filled: true),
                   maxLines: 8,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 image == null
                     ? imageController.text.isNotEmpty
                         ? Container(
-                            margin: EdgeInsets.all(20),
+                            margin: const EdgeInsets.all(20),
                             height: 100,
                             width: double.infinity,
                             color: Colors.deepPurple.shade50,
@@ -212,9 +212,9 @@ class _ModifyProductState extends State<ModifyProduct> {
                               imageController.text,
                               fit: BoxFit.contain,
                             ))
-                        : SizedBox()
+                        : const SizedBox()
                     : Container(
-                        margin: EdgeInsets.all(20),
+                        margin: const EdgeInsets.all(20),
                         height: 200,
                         width: double.infinity,
                         color: Colors.deepPurple.shade50,
@@ -230,8 +230,8 @@ class _ModifyProductState extends State<ModifyProduct> {
                       // NEW for cloudinary Upload
                       _pickImageAndCloudinaryUpload();
                     },
-                    child: Text("Pick Image")),
-                SizedBox(
+                    child: const Text("Pick Image")),
+                const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
@@ -239,11 +239,11 @@ class _ModifyProductState extends State<ModifyProduct> {
                   validator: (v) => v!.isEmpty ? "This cant be empty." : null,
                   decoration: InputDecoration(
                       hintText: "Image Link",
-                      label: Text("Image Link"),
+                      label: const Text("Image Link"),
                       fillColor: Colors.deepPurple.shade50,
                       filled: true),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 SizedBox(
@@ -267,12 +267,12 @@ class _ModifyProductState extends State<ModifyProduct> {
                                   .updateProduct(docId: productId, data: data);
                               Navigator.pop(context);
                               ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(content: Text("Product Updated")));
+                                  const SnackBar(content: Text("Product Updated")));
                             } else {
                               DbService().createProduct(data: data);
                               Navigator.pop(context);
                               ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(content: Text("Product Added")));
+                                  const SnackBar(content: Text("Product Added")));
                             }
                           }
                         },

@@ -13,8 +13,8 @@ class _DashboardTextState extends State<DashboardText> {
   Widget build(BuildContext context) {
     return  Row(
             children: [
-              Text("${widget.keyword} : ",style: TextStyle( fontSize: 18,fontWeight: FontWeight.w500),),
-              Text("${widget.value}",style: TextStyle( fontSize: 20,fontWeight: FontWeight.w600),),
+              Text("${widget.keyword} : ",style: const TextStyle( fontSize: 18,fontWeight: FontWeight.w500),),
+              Text(widget.value,style: const TextStyle( fontSize: 20,fontWeight: FontWeight.w600),),
             ],
           );
   }
